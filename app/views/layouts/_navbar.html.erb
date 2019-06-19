@@ -1,4 +1,4 @@
-header class="mb-4">
+<header class="mb-4">
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <a class="navbar-brand" href="/">ごるふの仲間たち</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
@@ -9,13 +9,12 @@ header class="mb-4">
       <ul class="navbar-nav mr-auto"></ul>
       <ul class="navbar-nav">
        <% if logged_in? %>
-          <li class="nav-item"><%= link_to 'Members', root_url(current_member), class: 'nav-link' %></li>
-          <li class="nav-item dropdown">
+           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_member.name %></a>
             <ul class="dropdown-menu dropdown-menu-right">
-              <li class="dropdown-item"><%= link_to '会の一覧', root_url(current_member) %></li>
+              <li class="dropdown-item"><%= link_to '会の一覧', parties_path(current_member) %></li>
               <li class="dropdown-item"><%= link_to '参加登録', root_url(current_member) %></li>                
-              <li class="dropdown-item"><%= link_to 'My profile', edit_member_path(current_member) %></li>
+              <li class="dropdown-item"><%= link_to 'ﾌﾟﾛﾌｨｰﾙ', edit_member_path(current_member) %></li>
               <li class="dropdown-divider"></li>
               <li class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete %></li>
             </ul>
@@ -24,10 +23,17 @@ header class="mb-4">
             <a href="#" class="nav-link dropdown-toggle"  data-toggle="dropdown"><%= current_member.name %></a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li class="dropdown-item"><%= link_to '会の創設', parties_new_path(current_member) %></li>
+              <li class="dropdown-divider"></li>
+              <li class="dropdown-item"><%= link_to '管理者ﾛｸﾞｲﾝ',root_url(current_member) %></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle"  data-toggle="dropdown"><%= current_member.name %></a>
+            <ul class="dropdown-menu dropdown-menu-right">
 　　　        <li class="dropdown-item"><%= link_to '予定登録', root_url(current_member) %></li>              
               <li class="dropdown-item"><%= link_to '入会審査', root_url(current_member) %></li>    
-              <li class="dropdown-item"><%= link_to '会の編集', root_url(current_member) %></li>               
-              <li class="dropdown-item"><%= link_to '会員一覧', members_show_path(current_member) %></li> 
+              <li class="dropdown-item"><%= link_to '会の編集', party_path(current_member) %></li>               
+              <li class="dropdown-item"><%= link_to '会員一覧', members_path(current_member) %></li> 
               <li class="dropdown-item"><%= link_to 'お知らせ', root_url(current_member) %></li>           
               <li class="dropdown-divider"></li>
               <li class="dropdown-item"><%= link_to '会の削除', root_url(current_member) %></li>

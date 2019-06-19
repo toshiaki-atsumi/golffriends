@@ -10,12 +10,12 @@
       </tr>
     </thead>
     <tbody>
-     <% @parties.each do |parties| %>
+     <% @parties.each do |party| %>
         <tr>
-          <td><%= link_to party.id, root_url(party.id) %></td>
+          <td><%= link_to party.id, edit_party_path(party) %></td>
           <td><%= party.name %></td>
           <td><%= party.member_id %></td>
-          <td><%= party.golfcource_id %></td>
+          <td><%= party.golfcourse_id %></td>
         </tr>
       <% end %>
     </tbody>

@@ -3,12 +3,13 @@ class MembersController < ApplicationController
   before_action :require_member_logged_in, only: [:index, :show]
 
   def index
-    @members = member.order(id: :desc).page(params[:page]).per(25)
+   @members = Member.all
+   counts(@members)
   end
 
   def show
-    @members = Member.all
-    counts(@members)
+    @member = Member.find(params[:id])
+    
   end
 
   def new
@@ -16,7 +17,7 @@ class MembersController < ApplicationController
   end
   
   def edit
-      @member = current_member
+      @member = Member.find(params[:id])
   end
 
   def create
@@ -31,12 +32,21 @@ class MembersController < ApplicationController
   end
   
   def update
-    if @member.save
-      flash[:success] = '登録内容を変更しました。'
-      redirect_to root_url
+    @member = Member.find(params[:id])
+    email = params[:member][:email].downcase
+    password = params[:member][:password]
+    if pwcheck(email,password)
+   
+      if @member.update(member_params)
+        flash[:success] = '登録内容を変更しました。'
+        redirect_to root_url
+      else
+         flash.now[:danger] = '登録変更に失敗しました。'
+          render :new
+      end
     else
-      flash.now[:danger] = '登録変更に失敗しました。'
-      render :new
+      flash.now[:danger] = '認証に失敗しました。'
+      render :new  
     end
   end  
   include SessionsHelper
@@ -51,5 +61,14 @@ class MembersController < ApplicationController
   def member_params
     params.require(:member).permit(:name,:birthdate,:gender,:tel,:tel1, :email,:email1, :password, :password_confirmation)
   end
-
+  def pwcheck(email, password)
+    @member = Member.find_by(email: email)
+    if @member && @member.authenticate(password)
+      # 認証成功
+      return true
+    else
+      # 認証失敗
+      return false
+    end
+  end
 end
