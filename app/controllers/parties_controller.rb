@@ -53,11 +53,13 @@ class PartiesController < ApplicationController
   end  
   
   include SessionsHelper
+  include OrganizerHelper
+  
   
   private
   
   def require_organaizer_logged_in
-     unless current_member == organaizer
+     unless organizer_logged_in?
        redirect_to root_url
      end  
   end 

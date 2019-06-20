@@ -1,0 +1,28 @@
+<div class="text-center">
+  <h1>管理者ログイン</h1>
+     <%= @party.name %>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+
+    
+<%= form_with(url: organizer_login_path, scope: :organizer, local: true) do |f| %>
+
+      <div class="form-group">
+          <%= f.label :password, 'Password' %>
+          <%= f.password_field :password, class: 'form-control' %>
+      </div>
+       <%= hidden_field_tag :party_id, @party.id%>
+      
+<%= f.submit '管理者ﾛｸﾞｲﾝ', class: 'btn btn-primary btn-block' %>
+
+    
+<% end %>
+
+
+    <p>一般ﾕｰｻﾞｰ? 
+<%= link_to '戻る', root_url %>
+</p>
+  </div>
+</div>

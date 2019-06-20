@@ -23,8 +23,9 @@
             <a href="#" class="nav-link dropdown-toggle"  data-toggle="dropdown"><%= current_member.name %></a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li class="dropdown-item"><%= link_to '会の創設', parties_new_path(current_member) %></li>
+              <li class="dropdown-item"><%= link_to '管理者ﾛｸﾞｲﾝ',party_path(current_member) %></li>
               <li class="dropdown-divider"></li>
-              <li class="dropdown-item"><%= link_to '管理者ﾛｸﾞｲﾝ',root_url(current_member) %></li>
+
             </ul>
           </li>
           <li class="nav-item dropdown">

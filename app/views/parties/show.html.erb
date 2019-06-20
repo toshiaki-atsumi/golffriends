@@ -14,7 +14,7 @@
         <tr>
           <td><%= link_to party.id, edit_party_path(party) %></td>
           <td><%= party.name %></td>
-          <td><%= party.member_id %></td>
+          <td><%= Member.find(party.member_id).name %></td>
           <td><%= party.golfcourse_id %></td>
         </tr>
       <% end %>

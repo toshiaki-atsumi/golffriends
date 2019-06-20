@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
     email = params[:session][:email].downcase
     password = params[:session][:password]
     if login(email, password)
+      @organizer = nil
       flash[:success] = 'ログインに成功しました。'
       redirect_to root_url
     else
