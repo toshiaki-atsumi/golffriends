@@ -22,6 +22,7 @@ class MembersController < ApplicationController
 
   def create
     @member = Member.new(member_params)
+    @member.organizer = nil
     if @member.save
       flash[:success] = 'メンバーを登録しました。'
       redirect_to root_url

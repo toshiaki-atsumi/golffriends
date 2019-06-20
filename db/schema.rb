@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_17_234522) do
+ActiveRecord::Schema.define(version: 2019_06_20_105903) do
 
   create_table "members", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.date "birthdate"
-    t.string "gender"
     t.string "email"
     t.string "email1"
     t.string "tel"
@@ -23,6 +22,7 @@ ActiveRecord::Schema.define(version: 2019_06_17_234522) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "organizer"
   end
 
   create_table "parties", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
