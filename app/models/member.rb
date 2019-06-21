@@ -4,10 +4,14 @@ class Member < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
-  validates :email1, length: { maximum: 255 },
+  validates :email1,length: { maximum: 255 },
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
                      
   has_secure_password  
+  has_many :registrations,dependent: :destroy
+  has_many :requests,dependent: :destroy
+  has_many :parties,through: :registararion,source: :member
+  has_many :reverse_of_registration,class_name:'Registration',foreign_key: 'party_id'
 end
  

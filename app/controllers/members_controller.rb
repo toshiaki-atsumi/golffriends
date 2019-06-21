@@ -1,7 +1,8 @@
 class MembersController < ApplicationController
 
   before_action :require_member_logged_in, only: [:index, :show]
-
+  before_action :require_organaizer_logged_in, only: [:index, :show]
+  
   def index
    @members = Member.all
    counts(@members)
@@ -51,9 +52,14 @@ class MembersController < ApplicationController
     end
   end  
   include SessionsHelper
+  include PartiesHelper
   
   private
-
+  def require_organaizer_logged_in
+     unless organizer_logged_in?
+       redirect_to root_url
+     end  
+  end 
   def require_member_logged_in
     unless logged_in?
       redirect_to login_url

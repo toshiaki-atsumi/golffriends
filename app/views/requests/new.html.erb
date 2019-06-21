@@ -1,0 +1,39 @@
+<div class="text-center">
+  <h1>入会申請</h1>
+</div>
+
+<div class="col-sm-6 offset-sm-3">
+ <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>会の名前</th>
+        <th>管理者</th>
+        <th>メンバー数</th>
+        <th>ゴルフ場</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><%= @party.name %></td>
+          <td><%= @member.name %></td>
+          <td><%= %></td>
+          <td><%= %></td>
+        </tr>
+    </tbody>
+  </table>
+  <%= @party.content %>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+    <%= form_with(model:@request, local: true ,method: :create ) do |f| %>
+       <div class="form-group">
+        <%= f.label :content, '入会申請理由' %>
+        <%= f.text_field :content, class: 'form-control' %>
+      </div>  
+      <%= hidden_field_tag :party_id, @party.id %>
+      <%= hidden_field_tag :member_id, current_member.id %>
+      <%= f.submit '送信', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+</div>

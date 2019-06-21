@@ -13,16 +13,17 @@
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_member.name %></a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li class="dropdown-item"><%= link_to '会の一覧', parties_path(current_member) %></li>
-              <li class="dropdown-item"><%= link_to '参加登録', root_url(current_member) %></li>                
+              <li class="dropdown-item"><%= link_to '申請状況', request_path(current_member) %></li>                
               <li class="dropdown-item"><%= link_to 'ﾌﾟﾛﾌｨｰﾙ', edit_member_path(current_member) %></li>
               <li class="dropdown-divider"></li>
               <li class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete %></li>
+              <li class="dropdown-item"><%= link_to '退会', logout_path, method: :delete %></li> 
             </ul>
           </li>
          <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle"  data-toggle="dropdown">管理者ﾒﾆｭｰ</a>
             <ul class="dropdown-menu dropdown-menu-right">
-              <li class="dropdown-item"><%= link_to '会の創設', parties_new_path(current_member) %></li>             
+              <li class="dropdown-item"><%= link_to '会の創設', new_party_path(current_member) %></li>             
 　　　        <li class="dropdown-item"><%= link_to '予定登録', root_url(current_member) %></li>              
               <li class="dropdown-item"><%= link_to '入会審査', root_url(current_member) %></li>    
               <li class="dropdown-item"><%= link_to '会の編集', party_path(current_member) %></li>               

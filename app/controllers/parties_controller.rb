@@ -1,6 +1,6 @@
 class PartiesController < ApplicationController
    before_action :require_member_logged_in
-   before_action :require_organaizer_logged_in only: [:edit, :show, :update]
+   before_action :require_organaizer_logged_in, only: [:edit, :show, :update]
    
   def index
     @parties = Party.order(id: :desc).page(params[:page]).per(10)
@@ -48,8 +48,7 @@ class PartiesController < ApplicationController
   end  
   
   include SessionsHelper
-
-  
+  include PartiesHelper
   
   private
   
