@@ -1,6 +1,7 @@
 class RegistrationsController < ApplicationController
   def new
-     @party = Party.find(params[:format])  
+     @request = Request.find(params[:format]) 
+     @party = Party.find(@request.party_id)  
   end
 
   def delete

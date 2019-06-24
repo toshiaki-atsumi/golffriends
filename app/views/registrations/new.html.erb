@@ -1,1 +1,23 @@
 <h1>registrations#new</h1>
+
+<div class="col-sm-6 offset-sm-3">
+ <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>入会申請者</th>
+        <th>入会理由</th>
+        <th>会の名前</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><%= @request.id %></td>
+          <td><%= Member.find(@request.member_id).name %></td>
+          <td><%= @request.content %></td>
+          <td><%= @party.name %></td>
+        </tr>
+    </tbody>
+  </table>
+  <%= @party.content %>
+</div>

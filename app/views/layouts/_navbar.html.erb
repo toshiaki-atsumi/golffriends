@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto"></ul>
       <ul class="navbar-nav">
-       <% if logged_in? %>
+        <% if logged_in? %>
            <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_member.name %></a>
             <ul class="dropdown-menu dropdown-menu-right">
@@ -20,19 +20,22 @@
               <li class="dropdown-item"><%= link_to '退会', logout_path, method: :delete %></li> 
             </ul>
           </li>
-         <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle"  data-toggle="dropdown">管理者ﾒﾆｭｰ</a>
-            <ul class="dropdown-menu dropdown-menu-right">
-              <li class="dropdown-item"><%= link_to '会の創設', new_party_path(current_member) %></li>             
-　　　        <li class="dropdown-item"><%= link_to '予定登録', root_url(current_member) %></li>              
-              <li class="dropdown-item"><%= link_to '入会審査', requests_path(current_member) %></li>    
-              <li class="dropdown-item"><%= link_to '会の編集', party_path(current_member) %></li>               
-              <li class="dropdown-item"><%= link_to '会員一覧', members_path(current_member) %></li> 
-              <li class="dropdown-item"><%= link_to 'お知らせ', root_url(current_member) %></li>           
-              <li class="dropdown-divider"></li>
-              <li class="dropdown-item"><%= link_to '会の削除', root_url(current_member) %></li>
-            </ul>
-          </li>
+          <% if organizer_logged_in? %>
+               <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle"  data-toggle="dropdown">管理者ﾒﾆｭｰ</a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li class="dropdown-item"><%= link_to '会の創設', new_party_path(current_member) %></li>             
+　　　            <li class="dropdown-item"><%= link_to '予定登録', root_url(current_member) %></li>              
+                  <li class="dropdown-item"><%= link_to '入会審査', requests_path(current_member) %></li>    
+                  <li class="dropdown-item"><%= link_to '会の編集', party_path(current_member) %></li>               
+                  <li class="dropdown-item"><%= link_to '会員一覧', members_path(current_member) %></li> 
+                  <li class="dropdown-item"><%= link_to 'お知らせ', root_url(current_member) %></li>           
+                  <li class="dropdown-divider"></li>
+                  <li class="dropdown-item"><%= link_to '会の削除', root_url(current_member) %></li>
+                </ul>
+              </li>
+          <% else %> 
+          <% end %>
         <% else %>        
           <li class="nav-item"><%= link_to 'Signup', signup_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'Login', login_path, class: 'nav-link' %></li>
