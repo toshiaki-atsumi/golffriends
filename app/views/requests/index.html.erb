@@ -1,0 +1,27 @@
+<h1>入会審査</h1>
+<p>idクリックして、入会審査を行って下さい</p>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>会の名前</th>
+        <th>申請者名</th>
+        <th>申請理由</th>
+        <th>申請日時</th>
+      </tr>
+    </thead>
+    <tbody>
+     <% @parties.each do |party| %>  
+         <% Request.where(party_id: party.id).each do |request| %>
+                
+            <tr>
+              <td><%= link_to request.id,new_registration_path(request.member_id) %></td>
+              <td><%= party.name %></td>
+              <td><%= Member.find(request.member_id).name %></td>
+              <td><%= request.content %></td>
+              <td><%= request.created_at %></td>
+            </tr>
+          <% end %>
+      <% end %>
+    </tbody>
+  </table>

@@ -25,7 +25,7 @@
             <ul class="dropdown-menu dropdown-menu-right">
               <li class="dropdown-item"><%= link_to '会の創設', new_party_path(current_member) %></li>             
 　　　        <li class="dropdown-item"><%= link_to '予定登録', root_url(current_member) %></li>              
-              <li class="dropdown-item"><%= link_to '入会審査', root_url(current_member) %></li>    
+              <li class="dropdown-item"><%= link_to '入会審査', requests_path(current_member) %></li>    
               <li class="dropdown-item"><%= link_to '会の編集', party_path(current_member) %></li>               
               <li class="dropdown-item"><%= link_to '会員一覧', members_path(current_member) %></li> 
               <li class="dropdown-item"><%= link_to 'お知らせ', root_url(current_member) %></li>           
