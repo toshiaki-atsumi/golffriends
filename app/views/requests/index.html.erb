@@ -15,11 +15,11 @@
          <% Request.where(party_id: party.id).each do |request| %>
                 
             <tr>
-              <td><%= link_to request.id,new_registration_path(request.member_id) %></td>
+              <td><%= link_to request.id,new_registration_path(request.id) %></td>
               <td><%= party.name %></td>
               <td><%= Member.find(request.member_id).name %></td>
               <td><%= request.content %></td>
-              <td><%= request.created_at %></td>
+              <td><%= request.created_at.to_date %></td>
             </tr>
           <% end %>
       <% end %>

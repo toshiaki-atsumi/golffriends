@@ -16,8 +16,8 @@
           <td><%= request.id %></td>
           <td><%= Party.find(request.party_id).name %></td>
           <td><%= request.status %></td>
-          <td><%= request.created_at %></td>
-          <td><%= request.updated_at %></td>
+          <td><%= request.created_at.to_date %></td>
+          <td><%= request.updated_at.to_date %></td>
         </tr>
       <% end %>
     </tbody>
