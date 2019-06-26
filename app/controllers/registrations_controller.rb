@@ -6,4 +6,8 @@ class RegistrationsController < ApplicationController
 
   def delete
   end
+  
+  def create
+    binding.pry
+  end
 end

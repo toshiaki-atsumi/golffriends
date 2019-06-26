@@ -8,6 +8,8 @@
         <th>申請者名</th>
         <th>申請理由</th>
         <th>申請日時</th>
+        <th>承認</th>
+        <th>拒否</th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +22,8 @@
               <td><%= Member.find(request.member_id).name %></td>
               <td><%= request.content %></td>
               <td><%= request.created_at.to_date %></td>
+              <td><%= button_to "承認",Registration  %></td>
+              <td><%= button_to "拒否",request_path(request.id) %></td>
             </tr>
           <% end %>
       <% end %>
