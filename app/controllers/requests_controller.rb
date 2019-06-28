@@ -18,6 +18,20 @@ class RequestsController < ApplicationController
   def show
      @requests = Request.where(member_id: current_member.id)
   end
+  def edit
+     @request = Request.find(params[:id])
+  end
+  def update
+    @request = Request.find(params[:id])
+    @request.status = params[:request][:status]
+    if @request.update(request_params)
+        flash[:success] = '審査結果を登録しました。'
+        redirect_to requests_path(current_member)
+      else
+         flash.now[:danger] = '登録に失敗しました。'
+        render :update
+    end
+  end
   
   def create
     @request = Request.new
@@ -51,7 +65,7 @@ class RequestsController < ApplicationController
     end
   end
  
-  def requests_params
-    params.require(:requests).permit(:content,:member_id,:party_id)
+  def request_params
+    params.require(:request).permit(:content,:member_id,:party_id,:status)
   end
 end
