@@ -48,6 +48,14 @@ class RequestsController < ApplicationController
     end
   end
   
+  def destroy
+    @request = Request.find(params[:id])
+    @request.destroy
+    flash[:success] = '入会申請を削除しました。'
+    redirect_to root_url
+  end
+  
+  
   include SessionsHelper
   include PartiesHelper
   

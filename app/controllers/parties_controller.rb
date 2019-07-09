@@ -36,6 +36,7 @@ class PartiesController < ApplicationController
   
   
   def update
+    binding.pry
     @party = Party.find(params[:id])
     party_organizer?
       if @party.update(party_params)

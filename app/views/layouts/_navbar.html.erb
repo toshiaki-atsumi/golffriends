@@ -13,6 +13,7 @@
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_member.name %></a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li class="dropdown-item"><%= link_to '会の一覧', parties_path(current_member) %></li>
+              <li class="dropdown-item"><%= link_to '会員一覧', parties_path(current_member) %></li>
               <li class="dropdown-item"><%= link_to '申請状況', request_path(current_member) %></li>                
               <li class="dropdown-item"><%= link_to 'ﾌﾟﾛﾌｨｰﾙ', edit_member_path(current_member) %></li>
               <li class="dropdown-divider"></li>

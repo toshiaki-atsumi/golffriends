@@ -8,10 +8,10 @@ class Member < ApplicationRecord
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
                      
-  has_secure_password  
-  has_many :registrations,dependent: :destroy
+  has_secure_password 
   has_many :requests,dependent: :destroy
-  has_many :parties,through: :registararion,source: :member
-  has_many :reverse_of_registration,class_name:'Registration',foreign_key: 'party_id'
+  has_many :parties
+  has_many :parties ,through: :requests,source: :member
+
 end
  

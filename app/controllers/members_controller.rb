@@ -4,8 +4,10 @@ class MembersController < ApplicationController
   before_action :require_organaizer_logged_in, only: [:index, :show]
   
   def index
-   @members = Member.all
-   counts(@members)
+    @parties= Party.where(member_id: current_member.id)
+     if @parties == nil
+       redirect_to root_url
+     end
   end
 
   def show

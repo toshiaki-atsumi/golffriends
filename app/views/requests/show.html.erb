@@ -1,4 +1,4 @@
-<h1>requests#show</h1>
+<h1>入会申請状況</h1>
 
 <table class="table table-striped">
     <thead>
@@ -13,7 +13,7 @@
     <tbody>
      <% @requests.each do |request| %>
         <tr>
-          <td><%= request.id %></td>
+          <td><%= link_to request.id,request_path(request.id) ,method: :delete, data: { confirm: "申請を取り消しますか?" } %></td>
           <td><%= Party.find(request.party_id).name %></td>
           <td><%= request.status %></td>
           <td><%= request.created_at.to_date %></td>
