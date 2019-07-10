@@ -11,12 +11,14 @@
     </thead>
     <tbody>
      <% @parties.each do |party| %>
-        <tr>
-          <td><%= link_to party.id, new_request_path(party.id) %></td>
-          <td><%= party.name %></td>
-          <td><%= Member.find(party.member_id).name %></td>
-          <td><%= party.golfcourse_id %></td>
-        </tr>
+        <% if Request.where(party_id: party.id,member_id: current_member.id) == [] %>
+          <tr>
+            <td><%= link_to party.id, new_request_path(party.id) %></td>
+            <td><%= party.name %></td>
+            <td><%= Member.find(party.member_id).name %></td>
+            <td><%= party.golfcourse_id %></td>
+          </tr>
+       <% end %> 
       <% end %>
     </tbody>
   </table>

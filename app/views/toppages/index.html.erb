@@ -1,2 +1,32 @@
-<h1>ようこそ　ゴルフの仲間たちへ</h1>
+<% if current_member == nil %>
 
+    <h1>ようこそ　ゴルフの仲間たちへ</h1>
+
+<% else %>
+
+  <p>会を選択して下さい</p>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>会の名前</th>
+        <th>管理者</th>
+        <th>ゴルフ場</th>
+      </tr>
+    </thead>
+    <% @parties = Party.all %>
+    <tbody>
+     <% @parties.each do |party| %>
+
+        <% unless Request.where(party_id: party.id,member_id: current_member.id) == [] %>
+          <tr>
+            <td><%= link_to party.id, new_request_path(party.id) %></td>
+            <td><%= party.name %></td>
+            <td><%= Member.find(party.member_id).name %></td>
+            <td><%= party.golfcourse_id %></td>
+          </tr>
+       <% end %> 
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
