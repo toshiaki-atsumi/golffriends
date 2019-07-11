@@ -1,6 +1,6 @@
 class PartiesController < ApplicationController
    before_action :require_member_logged_in
-   before_action :require_organaizer_logged_in, only: [:edit, :show, :update]
+   before_action :require_organaizer_logged_in, only: [:show, :update]
    
   def index
     @parties = Party.order(id: :desc).page(params[:page]).per(10)
@@ -16,7 +16,8 @@ class PartiesController < ApplicationController
   end
   
   def edit
-    @party = Party.find(params[:id])  
+    @party = Party.find(params[:id])
+    $current_party = @party
     party_organizer?
   end
 
@@ -26,6 +27,7 @@ class PartiesController < ApplicationController
     current_member.organizer = 'YES'
     current_member.save
     if @party.save
+      $current_party = @party
       flash[:success] = '会を創設しました。'
       redirect_to root_url
     else

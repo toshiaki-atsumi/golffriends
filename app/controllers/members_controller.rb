@@ -1,13 +1,10 @@
 class MembersController < ApplicationController
 
   before_action :require_member_logged_in, only: [:index, :show]
-  before_action :require_organaizer_logged_in, only: [:index, :show]
+  before_action :require_organaizer_logged_in, only: [:show]
   
   def index
-    @parties= Party.where(member_id: current_member.id)
-     if @parties == nil
-       redirect_to root_url
-     end
+  
   end
 
   def show

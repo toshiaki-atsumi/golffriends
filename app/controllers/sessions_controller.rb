@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:member_id] = nil
+    $current_party = nil
     flash[:success] = 'ログアウトしました。'
     redirect_to root_url
   end

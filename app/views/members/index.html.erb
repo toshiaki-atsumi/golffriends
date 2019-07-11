@@ -1,4 +1,4 @@
-<h1>Members#index</h1>
+<h1>会員一覧</h1>
  <table class="table table-striped">
     <thead>
       <tr>
@@ -9,8 +9,8 @@
       </tr>
     </thead>
     <tbody>
-    <% @parties.each do |party| %>
-      <% Request.where(party_id: party.id).each do |request| %>
+ 
+      <% Request.where(party_id: $current_party.id).each do |request| %>
        <% if request.status == '承認' %>
         <tr>
           <td><%= link_to request.member_id, member_path(request.member_id) %></td>
@@ -20,6 +20,6 @@
         </tr>
        <% end %>
       <% end %>
-    <% end %>
+
     </tbody>
 </table>

@@ -1,6 +1,10 @@
 <header class="mb-4">
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">ごるふの仲間たち</a>
+    <% if $current_party == nil %>
+      <a class="navbar-brand" href="/">会の名前</a>
+    <% else %>
+      <a class="navbar-brand" href="/"><%= $current_party.name %></a>
+    <% end %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,7 +17,7 @@
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_member.name %></a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li class="dropdown-item"><%= link_to '会の一覧', parties_path(current_member) %></li>
-              <li class="dropdown-item"><%= link_to '会員一覧', parties_path(current_member) %></li>
+              <li class="dropdown-item"><%= link_to '会員一覧', members_path(current_member) %></li>
               <li class="dropdown-item"><%= link_to '申請状況', request_path(current_member) %></li>                
               <li class="dropdown-item"><%= link_to 'ﾌﾟﾛﾌｨｰﾙ', edit_member_path(current_member) %></li>
               <li class="dropdown-divider"></li>
