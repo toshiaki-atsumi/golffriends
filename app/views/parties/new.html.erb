@@ -3,36 +3,36 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-6 offset-sm-3">
 
+ <div class="col-sm-10 offset-sm-2">
     <%= form_with(model:@party, local: true) do |f| %>
       <%= render 'layouts/error_messages', model: f.object %>
       <div class="form-group">
-        <%= f.label :name, '会の名前' %>
-        <%= f.text_field :name, class: 'form-control' %>
+        <label  class="col-sm-2 col-form-label">会の名前</label> 
+        <%= f.text_field :name , class: 'col-sm-8 d-inline'  %>
       </div>
       
       <div class="form-group">
-        <%= f.label :president, '会長' %>
-        <%= f.text_field :president, class: 'form-control' %>
+        <label  class="col-sm-2 col-form-label">会長</label> 
+        <%= f.text_field :president, class:'col-sm-8 d-inline'  %>
       </div>
       
       <div class="form-group">
-        <%= f.label :content, '会の説明' %>
-        <%= f.text_area :content, class: 'form-control' %>
+        <label  class="col-sm-2 col-form-label">会の説明</label> 
+        <%= f.text_area :content, class: 'col-sm-8 d-inline' %>
       </div>  
       
       <div class="form-group">
-        <%= f.label :password, 'Password' %>
-        <%= f.password_field :password, class: 'form-control' %>
+        <label  class="col-sm-2 col-form-label">password</label> 
+        <%= f.password_field :password, class: 'col-sm-8 d-inline'  %>
       </div>
 
       <div class="form-group">
-        <%= f.label :password_confirmation, 'Confirmation' %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
+        <label  class="col-sm-2 col-form-label">Confirmation</label> 
+        <%= f.password_field :password_confirmation, class: 'col-sm-8 d-inline'%>
       </div>
       <%= hidden_field_tag :member_id, current_member.id %>
-      <%= f.submit '送信', class: 'btn btn-primary btn-block' %>
+      <%= f.submit '送信', class: 'btn btn-primary btn-block offset-sm-2 col-8' %>
     <% end %>
-  </div>
+ </div>
 </div>
