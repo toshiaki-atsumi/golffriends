@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_24_022232) do
+ActiveRecord::Schema.define(version: 2019_07_16_095257) do
 
   create_table "members", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -60,9 +60,24 @@ ActiveRecord::Schema.define(version: 2019_06_24_022232) do
     t.index ["party_id"], name: "index_requests_on_party_id"
   end
 
+  create_table "schedules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "party_id"
+    t.datetime "date"
+    t.string "event1"
+    t.string "event2"
+    t.string "event3"
+    t.string "event4"
+    t.string "event5"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["party_id"], name: "index_schedules_on_party_id"
+  end
+
   add_foreign_key "parties", "members"
   add_foreign_key "registrations", "members"
   add_foreign_key "registrations", "parties"
   add_foreign_key "requests", "members"
   add_foreign_key "requests", "parties"
+  add_foreign_key "schedules", "parties"
 end

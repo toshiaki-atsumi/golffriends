@@ -1,0 +1,39 @@
+<div class="text-center">
+  <h1>スケジュール登録</h1>
+</div>
+
+<div class="row">
+
+ <div class="col-sm-10 offset-sm-2">
+    <%= form_with(model:Schedule, local: true) do |f| %>
+       <div class="form-group form-inline">
+          <label class="control-label">予定日時</label>
+          <%= f.date_field :play_at_date, class: 'form-control' %>
+          <%= f.select :play_at_hour, (0..23).to_a.map { |v| "%02d" % v }, {}, class: 'form-control' %> :
+          <%= f.select :play_at_minute, (0..59).to_a.map { |v| "%02d" % v }, {}, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <label  class="col-sm-2 col-form-label">繰り返し</label> 
+        <%= f.select :repeat, (0..52).to_a.map { |v| "%02d" % v }, {}, class: 'col-sm-1 d-inline'  %>
+      </div>
+      
+      <div class="form-group">
+        <label  class="col-sm-1 col-form-label">◎</label> 
+        <%= f.check_box :event, class: 'col-sm-1 d-inline' %>
+      </div>  
+      
+      <div class="form-group">
+        <label  class="col-sm-2 col-form-label">password</label> 
+        <%= f.password_field :password, class: 'col-sm-8 d-inline'  %>
+      </div>
+
+      <div class="form-group">
+        <label  class="col-sm-2 col-form-label">Confirmation</label> 
+        <%= f.password_field :password_confirmation, class: 'col-sm-8 d-inline'%>
+      </div>
+      <%= hidden_field_tag :member_id, current_member.id %>
+      <%= f.submit '送信', class: 'btn btn-primary btn-block offset-sm-2 col-8' %>
+    <% end %>
+ </div>
+</div>

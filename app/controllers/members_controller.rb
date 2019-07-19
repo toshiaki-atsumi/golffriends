@@ -4,7 +4,9 @@ class MembersController < ApplicationController
   before_action :require_organaizer_logged_in, only: [:show]
   
   def index
-  
+    if $current_party == nil
+       redirect_to root_url
+    end
   end
 
   def show
