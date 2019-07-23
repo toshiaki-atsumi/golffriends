@@ -6,7 +6,20 @@ class SchedulesController < ApplicationController
   end
 
   def create
-    
+    require 'date'
+    start_date = params[:schedule][:play_at_date].to_date
+    n =params[:schedule][:repeat].to_i
+    for i in 1..n
+      @schedule =Schedule.new
+      @schedule.date = start_date + (i-1)*7
+      @schedule.mark = params[:schedule][:marks]
+      @schedule.party_id = $current_party.id
+      unless @schedule.save
+        flash.now[:danger] = 'スケジュールの作成に失敗しました。'
+        redirect_to root_url
+      end
+    end
+     flash[:success] = 'スケジュールを登録しました。'
   end
 
   def edit
@@ -20,7 +33,7 @@ class SchedulesController < ApplicationController
 
   def destroy
   end
-end
+
 
   include SessionsHelper
   include PartiesHelper
@@ -44,3 +57,7 @@ end
        redirect_to root_url
     end
   end
+  def schedule_params
+    params.require(:schedule).permit(:play_at_date,:mark[],:repeat)
+  end
+end

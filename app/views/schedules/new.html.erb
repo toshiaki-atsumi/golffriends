@@ -28,14 +28,14 @@
           <td  class="form-group">
             <% %w(◎  〇 △  ✖   月例杯A   月例杯B   ).each.with_index do |mark,i|%> 
             <label%>
-            <%= check_box_tag 'schedule[marks][]', mark,false,id:"schedule_marks_#{i}" %>
+            <%= check_box_tag 'schedule[marks][]', mark,true,id:"schedule_marks_#{i}" %>
             <%= mark %>
             </label%>
             <% end %>
              <br />
 					</td>
 					<td class="d2">
-						<span class="remarks">入力可能にするマークにチェックをつけてください。</span>
+						<span class="remarks">使わないマークのチェックを外してください。</span>
 					</td>
 				</tr>            
       </div>

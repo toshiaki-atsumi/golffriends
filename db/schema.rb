@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_16_095257) do
+ActiveRecord::Schema.define(version: 2019_07_23_040441) do
 
   create_table "members", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -62,15 +62,10 @@ ActiveRecord::Schema.define(version: 2019_07_16_095257) do
 
   create_table "schedules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "party_id"
-    t.datetime "date"
-    t.string "event1"
-    t.string "event2"
-    t.string "event3"
-    t.string "event4"
-    t.string "event5"
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "date"
     t.index ["party_id"], name: "index_schedules_on_party_id"
   end
 
