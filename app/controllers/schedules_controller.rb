@@ -3,7 +3,7 @@ class SchedulesController < ApplicationController
   before_action :require_party_selected
   
   def index
-    @schedules = Schedule.where(party_id: $current_party.id)
+    @schedules = Schedule.where(party_id: $current_party.id).page(params[:page]).per(10)
   end
 
   def create

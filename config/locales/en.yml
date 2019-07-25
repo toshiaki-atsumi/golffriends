@@ -30,4 +30,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+    date:
+    formats:
+      default: ! '%Y/%m/%d'
+      long: ! '%Y年%-m月%-d日(%a)'
+      middle: ! '%-m月%-d日(%a)'
+      short2: ! '%-m/%-d'
