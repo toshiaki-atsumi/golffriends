@@ -3,6 +3,7 @@
       <tr>
         <th>id</th>
         <th>プレー日</th>
+        <th>曜日</th>
         <th>ﾏｰｸ</th>
         <th>コメント</th>
       </tr>
@@ -12,6 +13,7 @@
         <tr>
           <td><%= link_to schedule.id,edit_schedule_path(schedule.id) %></td>
           <td><%= schedule.date %></td>
+          <td><%= %w(日 月 火 水 木 金 土)[schedule.date.wday] %></td>
           <td><%= schedule.mark %></td>
           <td><%= schedule.comment  %></td></br>
         </tr> 

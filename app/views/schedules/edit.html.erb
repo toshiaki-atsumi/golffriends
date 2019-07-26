@@ -1,2 +1,34 @@
 <h1>Schedules#edit</h1>
-<p>Find me in app/views/schedules/edit.html.erb</p>
+<div class="text-center">
+  <h1>スケジュールの編集</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+    <%= form_with(model:@schedule, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      <div class="form-group">
+        <%= f.label :date, 'プレー日' %>
+        <%= f.date_field :date, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :mark, 'ﾏｰｸ' %>
+        <% @schedule.mark.each do |mark| %>
+          <%= f.text_field  'mark[]' , class: 'form-control' %>
+        <% end %>
+      </div>
+      
+
+      <div class="form-group">
+        <%= f.label :comment, 'コメント' %>
+        <%= f.text_area :comment, class: 'form-control' %>
+      </div>  
+      <div class ="col-sm-3 ">
+          <%= f.submit '送信', class: 'btn btn-primary btn-block d-inline' %>
+           <%= link_to "Delete", @schedule, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger '%>
+      </div>
+
+    <% end %>
+  </div>
+</div>
