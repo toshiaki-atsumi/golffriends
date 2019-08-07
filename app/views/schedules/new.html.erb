@@ -7,15 +7,14 @@
  <div class="col-sm-10 offset-sm-2">
     <%= form_with(model:Schedule, local: true) do |f| %>
        <div class="form-group form-inline">
-          <label class="col-sm-2 col-form-label">予定日時</label>
+          <label class="col-sm-2 col-form-label">予定日</label>
           <%= f.date_field :play_at_date, class: 'form-control' %>
-          <%= f.select :play_at_hour, (0..23).to_a.map { |v| "%02d" % v }, {}, class: 'form-control' %> :
-          <%= f.select :play_at_minute, (0..59).to_a.map { |v| "%02d" % v }, {}, class: 'form-control' %>
+          <span class="remarks">Box内をクリックするとカレンダーから日付を指定できます。</span>
       </div>
       
       <div class="form-group form-inline">
-        <label  class="col-sm-2 col-form-label">繰り返し</label> 
-        <%= f.select :repeat, (0..52).to_a.map { |v| "%02d" % v }, {}, class: 'col-sm-1 d-inline'  %>
+        <label  class="col-sm-2 col-form-label">繰返し(週)</label> 
+        <%= f.select :repeat, (1..52).to_a.map { |v| "%02d" % v }, {}, class: 'col-sm-1 d-inline'  %>
       </div>
       
   

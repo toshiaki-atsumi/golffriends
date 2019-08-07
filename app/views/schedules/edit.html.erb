@@ -13,10 +13,8 @@
       </div>
       
       <div class="form-group">
-        <%= f.label :mark, 'ﾏｰｸ' %>
-        <% @schedule.mark.each do |mark| %>
-          <%= f.text_field  'mark[]' , class: 'form-control' %>
-        <% end %>
+        <%= f.label :mark1, '追加ﾏｰｸ' %>
+        <%= f.text_field  'mark1' , class: 'form-control' %>
       </div>
       
 
@@ -24,9 +22,9 @@
         <%= f.label :comment, 'コメント' %>
         <%= f.text_area :comment, class: 'form-control' %>
       </div>  
-      <div class ="col-sm-3 ">
+      <div class ="col-sm-3">
           <%= f.submit '送信', class: 'btn btn-primary btn-block d-inline' %>
-           <%= link_to "Delete", @schedule, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger '%>
+           <%= link_to "Delete", @schedule, method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'btn btn-danger '%>
       </div>
 
     <% end %>

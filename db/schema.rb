@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_23_040441) do
+ActiveRecord::Schema.define(version: 2019_08_05_224558) do
 
   create_table "members", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 2019_07_23_040441) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "organizer"
+  end
+
+  create_table "participants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "schedule_id"
+    t.bigint "member_id"
+    t.string "mark", limit: 5
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_participants_on_member_id"
+    t.index ["schedule_id"], name: "index_participants_on_schedule_id"
   end
 
   create_table "parties", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -66,9 +77,12 @@ ActiveRecord::Schema.define(version: 2019_07_23_040441) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "date"
+    t.string "mark"
     t.index ["party_id"], name: "index_schedules_on_party_id"
   end
 
+  add_foreign_key "participants", "members"
+  add_foreign_key "participants", "schedules"
   add_foreign_key "parties", "members"
   add_foreign_key "registrations", "members"
   add_foreign_key "registrations", "parties"

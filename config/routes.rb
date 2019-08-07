@@ -1,19 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'schedules/index'
-  get 'schedules/create'
-  get 'schedules/edit'
-  get 'schedules/show'
-  get 'schedules/update'
-  get 'schedules/destroy'
-  get 'index/create'
-  get 'index/edit'
-  get 'index/show'
-  get 'index/update'
-  get 'index/destroy'
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
+
 
   root to: 'toppages#index'
   get 'signup', to: 'members#new'
@@ -28,5 +15,5 @@ Rails.application.routes.draw do
   resources :registrations
   resources :requests
   resources :schedules
-  
+  resources :participants
 end

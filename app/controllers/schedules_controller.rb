@@ -3,7 +3,7 @@ class SchedulesController < ApplicationController
   before_action :require_party_selected
   
   def index
-    @schedules = Schedule.where(party_id: $current_party.id).page(params[:page]).per(10)
+    @schedules = Schedule.where(party_id: $current_party.id).order("date ASC").page(params[:page]).per(10)
   end
 
   def create
@@ -17,8 +17,12 @@ class SchedulesController < ApplicationController
       @schedule.date = start_date + (i-1)*7
       @schedule.mark = params[:schedule][:marks]
       @schedule.party_id = $current_party.id
-      @schedule.mark <<  mark1 
-      @schedule.mark <<  mark2
+      unless mark1 == ""
+         @schedule.mark <<  mark1 
+      end
+      unless mark2 == ""
+         @schedule.mark <<  mark2
+      end
       unless @schedule.save
         flash.now[:danger] = 'スケジュールの作成に失敗しました。'
         redirect_to root_url
@@ -37,9 +41,8 @@ class SchedulesController < ApplicationController
   def update
     @schedule = Schedule.find(params[:id])
     @schedule.date = params[:schedule][:date]
-    @schedule.mark = params[:schedule][:mark]
+    @schedule.mark << params[:schedule][:mark1]
     @schedule.comment =params[:schedule][:comment]
-    binding.pry
     if @schedule.update(schedule_params)
         flash[:success] = '登録内容を変更しました。'
         redirect_to root_url
@@ -51,6 +54,10 @@ class SchedulesController < ApplicationController
   
   
   def destroy
+    @schedule = Schedule.find(params[:id])
+    @schedule.destroy
+    flash[:success] = 'スケジュールを削除しました。'
+    redirect_to root_url
   end
 
 
@@ -77,6 +84,6 @@ class SchedulesController < ApplicationController
     end
   end
   def schedule_params
-    params.require(:schedule).permit(:date,:mark,:comment,:mark1,:mark2)
+    params.require(:schedule).permit(:date,:mark,:comment)
   end
 end
