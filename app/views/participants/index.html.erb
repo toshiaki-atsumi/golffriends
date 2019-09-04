@@ -11,14 +11,16 @@
       </tr>
   </thead>
     <tbody>
+    <%= form_with(model:@participant, local: true) do |f| %>
      <% @schedules.each do |schedule| %>  
         <% @participant = Participant.find_by(schedule_id: schedule.id , member_id:current_member.id) %>
         <% if @participant == nil %>
+          
             <tr>
               <td>未入力</td>
               <td><%= schedule.date %></td>
               <td><%= %w(日 月 火 水 木 金 土)[schedule.date.wday] %></td>
-              <td><%= schedule.mark %></td>
+              <td><%= f.select :marks,[[1,2], [3,4],[5,6]]%></td>
               <td><%= schedule.comment  %></td></br>
             </tr> 
         <% else %> 
@@ -31,8 +33,10 @@
             </tr>         
          <% end %>
       <% end %>
+     <% end %>
     </tbody>
   </table>
+ 
 <%= paginate @schedules %> 
 
 
