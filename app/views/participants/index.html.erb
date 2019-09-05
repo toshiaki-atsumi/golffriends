@@ -15,13 +15,13 @@
      <% @schedules.each do |schedule| %>  
         <% @participant = Participant.find_by(schedule_id: schedule.id , member_id:current_member.id) %>
         <% if @participant == nil %>
-          
+        
             <tr>
               <td>未入力</td>
               <td><%= schedule.date %></td>
               <td><%= %w(日 月 火 水 木 金 土)[schedule.date.wday] %></td>
-              <td><%= f.select :marks,[[1,2], [3,4],[5,6]]%></td>
-              <td><%= schedule.comment  %></td></br>
+              <td><%= f.select :marks[],(schedule.mark.each_with_object []  do |value, array_new| array_new << [value,value]  end ) %></td></br>
+              <td><%= f.text_field schedule.comment %></td>
             </tr> 
         <% else %> 
              <tr>
@@ -33,10 +33,11 @@
             </tr>         
          <% end %>
       <% end %>
+      <%= f.submit '送信', class: 'btn btn-primary btn-block d-inline' %>
      <% end %>
     </tbody>
   </table>
- 
+
 <%= paginate @schedules %> 
 
 

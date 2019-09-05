@@ -57,7 +57,7 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.find(params[:id])
     @schedule.destroy
     flash[:success] = 'スケジュールを削除しました。'
-    redirect_to root_url
+    redirect_to schedule_path
   end
 
 
