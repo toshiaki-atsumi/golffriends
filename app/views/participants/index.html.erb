@@ -17,11 +17,11 @@
         <% if @participant == nil %>
         
             <tr>
-              <td>未入力</td>
+              <td>未入力<%= hidden_field_tag "p_id[]", 0 %><%= hidden_field_tag "s_id[]", schedule.id %></td>
               <td><%= schedule.date %></td>
               <td><%= %w(日 月 火 水 木 金 土)[schedule.date.wday] %></td>
-              <td><%= f.select :marks[],(schedule.mark.each_with_object []  do |value, array_new| array_new << [value,value]  end ) %></td></br>
-              <td><%= f.text_field schedule.comment %></td>
+              <td><%= f.select "marks[]",(schedule.mark.each_with_object []  do |value, array_new| array_new << [value,value]  end ) , :selected => schedule.mark[0] %></td></br>
+              <td><%= f.text_field "comments[]" %></td>
             </tr> 
         <% else %> 
              <tr>
