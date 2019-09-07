@@ -25,11 +25,11 @@
             </tr> 
         <% else %> 
              <tr>
-              <td><%= link_to schedule.id,edit_schedule_path(schedule.id) %></td>
+              <td><%= link_to @participant.id,edit_participant_path(@participant.id) %></td>
               <td><%= schedule.date %></td>
               <td><%= %w(日 月 火 水 木 金 土)[schedule.date.wday] %></td>
-              <td><%= schedule.mark %></td>
-              <td><%= schedule.comment  %></td></br>
+              <td><%= @participant.mark %></td>
+              <td><%= @participant.comment  %></td></br>
             </tr>         
          <% end %>
       <% end %>
