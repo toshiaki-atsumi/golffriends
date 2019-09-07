@@ -1,6 +1,6 @@
-<h1>Participants#index</h1>
+<h1>Participants#index</h1>  
+<h1>スケジュール一覧</h1>
 <table class="table table-striped">
-  <h1>スケジュール一覧</h1>
   <thead>
       <tr>
         <th>id</th>
@@ -15,7 +15,6 @@
      <% @schedules.each do |schedule| %>  
         <% @participant = Participant.find_by(schedule_id: schedule.id , member_id:current_member.id) %>
         <% if @participant == nil %>
-        
             <tr>
               <td>未入力<%= hidden_field_tag "p_id[]", 0 %><%= hidden_field_tag "s_id[]", schedule.id %></td>
               <td><%= schedule.date %></td>
@@ -29,7 +28,7 @@
               <td><%= schedule.date %></td>
               <td><%= %w(日 月 火 水 木 金 土)[schedule.date.wday] %></td>
               <td><%= @participant.mark %></td>
-              <td><%= @participant.comment  %></td></br>
+              <td><%= @participant.comment  %></td>
             </tr>         
          <% end %>
       <% end %>
@@ -37,7 +36,6 @@
      <% end %>
     </tbody>
   </table>
-
 <%= paginate @schedules %> 
 
 

@@ -1,7 +1,7 @@
 class ParticipantsController < ApplicationController
-  
+  before_action :require_member_logged_in
   def index
-     @schedules = Schedule.where(party_id: $current_party.id).where('date > ?',Date.today).page(params[:page]).per(10)
+     @schedules = Schedule.where(party_id: $current_party.id).where('date > ?',Date.today).order(date:"ASC").page(params[:page]).per(10)
   end
   
   def show
@@ -24,6 +24,8 @@ class ParticipantsController < ApplicationController
   end
 
   def edit
+    @participant = Participant.find_by(params[:id])
+    @schedule = Schedule.where(id: @participant.schedule_id.to_s)
   end
   
   def participant_params
