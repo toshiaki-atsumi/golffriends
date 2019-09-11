@@ -29,12 +29,12 @@ class ParticipantsController < ApplicationController
   end
   
   def update
-    @participant = Participant.find_by(id: params[:id])
+    @participant = Participant.find(params[:id])
     @participant.mark = params[:participant][:mark]
     @participant.comment = params[:participant][:comment] 
-    if @paticipant.update(participant_params)
+    if @participant.update(participant_params)
         flash[:success] = 'スケジュール内容を変更しました。'
-        redirect_to participant_index_url
+        redirect_to participants_url
     else
          flash.now[:danger] = 'スケジュール変更に失敗しました。'
   　end
@@ -42,6 +42,6 @@ class ParticipantsController < ApplicationController
   end
   
   def participant_params
-    params.permit(:p_id,:s_id,:marks,:comment)
+    params.require(:participant).permit(:p_id,:s_id,:marks,:comment,:id,:mark)
   end
 end
