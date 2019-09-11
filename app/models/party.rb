@@ -6,4 +6,5 @@ class Party < ApplicationRecord
   has_many :requests,dependent: :destroy
   has_many :members
   has_many :members ,through: :requests,source: :party
+  has_many :participants,dependent: :destroy
 end

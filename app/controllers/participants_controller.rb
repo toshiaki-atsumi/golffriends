@@ -24,8 +24,21 @@ class ParticipantsController < ApplicationController
   end
 
   def edit
-    @participant = Participant.find_by(params[:id])
-    @schedule = Schedule.where(id: @participant.schedule_id.to_s)
+    @participant = Participant.find_by(id: params[:id])
+    @schedule = Schedule.find_by(id: @participant.schedule_id.to_s)
+  end
+  
+  def update
+    @participant = Participant.find_by(id: params[:id])
+    @participant.mark = params[:participant][:mark]
+    @participant.comment = params[:participant][:comment] 
+    if @paticipant.update(participant_params)
+        flash[:success] = 'スケジュール内容を変更しました。'
+        redirect_to participant_index_url
+    else
+         flash.now[:danger] = 'スケジュール変更に失敗しました。'
+  　end
+    end
   end
   
   def participant_params

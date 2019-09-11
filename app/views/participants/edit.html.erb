@@ -5,13 +5,12 @@
     <%= form_with(model:@participant, local: true) do |f| %>
       <%= render 'layouts/error_messages', model: f.object %>
      <div class="form-group">
-        <% 'プレー日' %>
-       
+        <%= 'プレー日  ' %>
+        <%= @schedule.date %>
       </div>
-      
       <div class="form-group">
         <%= f.label :mark, '出欠ﾏｰｸ' %>
-        <%= f.select :mark,(@schedule.mark.each_with_object []  do |value, array_new| array_new << [value,value]  end ),  class: 'form-control' %>
+        <%= f.select :mark,(@schedule.mark.each_with_object []  do |value, array_new| array_new << [value,value]  end ), :selected => @participant.mark, class: 'form-control' %>
       </div>
       
 
@@ -20,8 +19,9 @@
         <%= f.text_field :comment, class: 'form-control' %>
       </div>  
       <div class ="col-sm-3">
+         <%= hidden_field_tag :id, @participant.id %>
           <%= f.submit '送信', class: 'btn btn-primary btn-block d-inline' %>
-           <%= link_to "Delete", @schedule, method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'btn btn-danger '%>
+          <%= link_to "Delete", @schedule, method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'btn btn-danger '%>
       </div>
 
     <% end %>

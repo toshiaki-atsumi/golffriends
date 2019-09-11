@@ -10,8 +10,7 @@ class Member < ApplicationRecord
                      
   has_secure_password 
   has_many :requests,dependent: :destroy
-  has_many :parties
   has_many :parties ,through: :requests,source: :member
-
+  has_many :participants,dependent: :destroy
 end
  
