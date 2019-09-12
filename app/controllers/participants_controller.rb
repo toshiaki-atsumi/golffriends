@@ -1,7 +1,11 @@
 class ParticipantsController < ApplicationController
   before_action :require_member_logged_in
   def index
-     @schedules = Schedule.where(party_id: $current_party.id).where('date > ?',Date.today).order(date:"ASC").page(params[:page]).per(10)
+     if $current_party != nil
+       @schedules = Schedule.where(party_id: $current_party.id).where('date > ?',Date.today).order(date:"ASC").page(params[:page]).per(10)
+     else
+       redirect_to root_url
+     end
   end
   
   def show
@@ -21,6 +25,7 @@ class ParticipantsController < ApplicationController
         @participant.save
       end
     end
+    redirect_to participants_url
   end
 
   def edit

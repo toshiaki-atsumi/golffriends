@@ -29,6 +29,7 @@ class SchedulesController < ApplicationController
       end
     end
      flash[:success] = 'スケジュールを登録しました。'
+     redirect_to schedules_path
   end
 
   def edit
@@ -41,11 +42,14 @@ class SchedulesController < ApplicationController
   def update
     @schedule = Schedule.find(params[:id])
     @schedule.date = params[:schedule][:date]
-    @schedule.mark << params[:schedule][:mark1]
+    @schedule.mark = params[:schedule][:marks]
+    if params[:schedule][:mark1] != ""
+        @schedule.mark << params[:schedule][:mark1]
+    end
     @schedule.comment =params[:schedule][:comment]
     if @schedule.update(schedule_params)
         flash[:success] = '登録内容を変更しました。'
-        redirect_to root_url
+        redirect_to schedules_path
     else
          flash.now[:danger] = '登録変更に失敗しました。'
           render :update
@@ -57,7 +61,7 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.find(params[:id])
     @schedule.destroy
     flash[:success] = 'スケジュールを削除しました。'
-    redirect_to schedule_path
+    redirect_to schedules_path
   end
 
 

@@ -11,12 +11,21 @@
         <%= f.label :date, 'プレー日' %>
         <%= f.date_field :date, class: 'form-control' %>
       </div>
-      
+      <div  class="form-group">
+        <% @schedule.mark.each.with_index do |mark,i|%> 
+          <label%>
+          <%= check_box_tag 'schedule[marks][]', mark,true,id:"schedule_marks_#{i}" %>
+          <%= mark %>
+          </label%>
+        <% end %>
+        <br/>
+        <span class="remarks">使わないマークのチェックを外してください。</span>>
+			</div>        
       <div class="form-group">
         <%= f.label :mark1, '追加ﾏｰｸ' %>
         <%= f.text_field  'mark1' , class: 'form-control' %>
       </div>
-      
+
 
       <div class="form-group">
         <%= f.label :comment, 'コメント' %>

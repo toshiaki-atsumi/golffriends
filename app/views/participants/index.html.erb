@@ -1,5 +1,6 @@
 <h1>Participants#index</h1>  
 <h1>スケジュール一覧</h1>
+<%= form_with(model:@participant, local: true) do |f| %>
 <table class="table table-striped">
   <thead>
       <tr>
@@ -10,8 +11,8 @@
         <th>コメント</th>
       </tr>
   </thead>
+
     <tbody>
-    <%= form_with(model:@participant, local: true) do |f| %>
      <% @schedules.each do |schedule| %>  
         <% @participant = Participant.find_by(schedule_id: schedule.id , member_id:current_member.id) %>
         <% if @participant == nil %>
@@ -19,7 +20,7 @@
               <td>未入力<%= hidden_field_tag "p_id[]", 0 %><%= hidden_field_tag "s_id[]", schedule.id %></td>
               <td><%= schedule.date %></td>
               <td><%= %w(日 月 火 水 木 金 土)[schedule.date.wday] %></td>
-              <td><%= f.select "marks[]",(schedule.mark.each_with_object []  do |value, array_new| array_new << [value,value]  end ) , :selected => schedule.mark[0] %></td></br>
+              <td><%= f.select "marks[]",(schedule.mark.each_with_object []  do |value, array_new| array_new << [value,value]  end ) , :selected => schedule.mark[0] %></td>
               <td><%= f.text_field "comments[]" %></td>
             </tr> 
         <% else %> 
@@ -32,10 +33,11 @@
             </tr>         
          <% end %>
       <% end %>
-      <%= f.submit '送信', class: 'btn btn-primary btn-block d-inline' %>
-     <% end %>
     </tbody>
+
   </table>
+      <%= f.submit '送信', class: 'btn btn-primary btn-block d-inline' %>
+  <% end %>
 <%= paginate @schedules %> 
 
 
