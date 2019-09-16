@@ -23,20 +23,22 @@
               <li class="dropdown-item"><%= link_to 'ﾌﾟﾛﾌｨｰﾙ', edit_member_path(current_member) %></li>
               <li class="dropdown-divider"></li>
               <li class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete %></li>
-              <li class="dropdown-item"><%= link_to '退会', logout_path, method: :delete %></li> 
+              <li class="dropdown-item"><%= link_to '退会', current_member, method: :delete, data: { confirm: "本当に退会しますか?" }  %></li> 
             </ul>
           </li>
           <% if organizer_logged_in? %>
                <li class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle"  data-toggle="dropdown">管理者ﾒﾆｭｰ</a>
                 <ul class="dropdown-menu dropdown-menu-right">
-                  <li class="dropdown-item"><%= link_to '会の創設', new_party_path(current_member) %></li>       
+                  <li class="dropdown-item"><%= link_to '出欠状況', schedule_path(current_member) %></li>
                   <li class="dropdown-item"><%= link_to 'ｽｹｼﾞｭｰﾙ登録', new_schedule_path(current_member) %></li>
                   <li class="dropdown-item"><%= link_to 'ｽｹｼﾞｭｰﾙ一覧', schedules_path(current_member) %></li>
+                  <li class="dropdown-item"><%= link_to 'お知らせ', root_url(current_member) %></li> 
+                  <li class="dropdown-divider"></li>
+                  <li class="dropdown-item"><%= link_to '会の創設', new_party_path(current_member) %></li>  
+                  <li class="dropdown-item"><%= link_to '会の編集', party_path(current_member) %></li>   
                   <li class="dropdown-item"><%= link_to '入会審査', requests_path(current_member) %></li>
-                  <li class="dropdown-item"><%= link_to '会の編集', party_path(current_member) %></li>               
-                  <li class="dropdown-item"><%= link_to '会員一覧', members_path(current_member) %></li> 
-                  <li class="dropdown-item"><%= link_to 'お知らせ', root_url(current_member) %></li>           
+                  <li class="dropdown-item"><%= link_to '会員一覧', members_path(current_member) %></li>                   
                   <li class="dropdown-divider"></li>
                   <li class="dropdown-item"><%= link_to '会の削除', root_url(current_member) %></li>
                 </ul>

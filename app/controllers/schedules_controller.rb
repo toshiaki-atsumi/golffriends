@@ -37,6 +37,15 @@ class SchedulesController < ApplicationController
   end
 
   def show
+    @p_count=[]
+    @schedules = Schedule.where(party_id: $current_party.id).order("date ASC").page(params[:page]).per(10)
+    @schedules.each_with_index do |schedule,i|
+      m_count= []
+      schedule.mark.each_with_index  do |mark ,j|
+        m_count[j] = Participant.where(schedule_id: schedule.id ,mark: mark).count
+      end
+    @p_count[i] = m_count
+    end
   end
 
   def update

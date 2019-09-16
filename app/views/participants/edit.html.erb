@@ -20,7 +20,7 @@
       </div>  
       <div class ="col-sm-3">
          <%= hidden_field_tag :id, @participant.id %>
-          <%= f.submit '送信', class: 'btn btn-primary btn-block d-inline' %>
+          <%= f.submit '送信', class: 'btn btn-primary' %>
           <%= link_to "Delete", @schedule, method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'btn btn-danger '%>
       </div>
 

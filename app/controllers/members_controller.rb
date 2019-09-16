@@ -52,6 +52,14 @@ class MembersController < ApplicationController
       render :new  
     end
   end  
+  
+  def destroy
+    current_member.destroy
+    flash[:success] = '退会を受理しました。'
+    redirect_to root_url
+  end
+  
+  
   include SessionsHelper
   include PartiesHelper
   
