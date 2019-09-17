@@ -1,10 +1,8 @@
-<table class="table table-striped border ">
+<table class="table table-striped border="1" ">
   <h1>スケジュール一覧</h1>
   <thead>
       <tr>
-        <th>id</th>
         <th>プレー日</th>
-        <th>曜日</th>
         <th>ﾏｰｸ</th>
         <th>コメント</th>
       </tr>
@@ -12,9 +10,7 @@
     <tbody>
      <% @schedules.each do |schedule| %>  
         <tr>
-          <td><%= link_to schedule.id,edit_schedule_path(schedule.id) %></td>
-          <td><%= schedule.date %></td>
-          <td><%= %w(日 月 火 水 木 金 土)[schedule.date.wday] %></td>
+          <td><%= link_to schedule.date.strftime("%y/%m/%d")+"("+%w(日 月 火 水 木 金 土)[schedule.date.wday]+")",edit_schedule_path(schedule.id)  %></td>
           <td><%= schedule.mark %></td>
           <td><%= schedule.comment  %></td>
         </tr> 

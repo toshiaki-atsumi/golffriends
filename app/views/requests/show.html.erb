@@ -1,9 +1,8 @@
 <h1>入会申請状況</h1>
-
+<p>退会するときは、会の名前をクリックしてください</p>
 <table class="table table-striped">
     <thead>
       <tr>
-        <th>id</th>
         <th>会の名前</th>
         <th>申請状況</th>
         <th>申請日時</th>
@@ -13,8 +12,7 @@
     <tbody>
      <% @requests.each do |request| %>
         <tr>
-          <td><%= link_to request.id,request_path(request.id) ,method: :delete, data: { confirm: "申請を取り消しますか?" } %></td>
-          <td><%= Party.find(request.party_id).name %></td>
+          <td><%= link_to Party.find(request.party_id).name,request_path(request.id) ,method: :delete, data: { confirm: "本当に退会しますか?" }%></td>
           <td><%= request.status %></td>
           <td><%= request.created_at.to_date %></td>
           <td><%= request.updated_at.to_date %></td>

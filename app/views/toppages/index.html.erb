@@ -8,7 +8,6 @@
 <table class="table table-striped">
     <thead>
       <tr>
-        <th>id</th>
         <th>会の名前</th>
         <th>管理者</th>
         <th>ゴルフ場</th>
@@ -20,8 +19,7 @@
 
         <% unless Request.where(party_id: party.id,member_id: current_member.id) == [] %>
           <tr>
-            <td><%= link_to party.id, edit_party_path(party) %></td>
-            <td><%= party.name %></td>
+            <td><%= link_to party.name , edit_party_path(party) %></td>
             <td><%= Member.find(party.member_id).name %></td>
             <td><%= party.golfcourse_id %></td>
           </tr>

@@ -7,9 +7,8 @@
     <tbody>
      <% @schedules.each_with_index do |schedule,i| %>  
         <tr>
-          <td><%= link_to schedule.id,edit_schedule_path(schedule.id) %></td>
-          <td><%= schedule.date %></td>
-          <td><%= %w(日 月 火 水 木 金 土)[schedule.date.wday] %></td>
+          <td><%= link_to schedule.id,participant_path(schedule.id) %></td>
+          <td><%= schedule.date.strftime("%y/%m/%d")+"("+%w(日 月 火 水 木 金 土)[schedule.date.wday]+")" %></td>
           <% schedule.mark.each_with_index  do |mark ,j| %>
              <td><%= schedule.mark[j] %></td>
           <% end %>
@@ -19,7 +18,6 @@
         <tr>
            <td><% "12345" %></td>
            <td><%= "人数" %></td>
-           <td><% "12345" %></td>
            <% schedule.mark.each_with_index  do |mark ,j| %>
              <td><%= @p_count[i][j] %></td>
            <% end %>  

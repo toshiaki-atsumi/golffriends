@@ -9,6 +9,7 @@ class ParticipantsController < ApplicationController
   end
   
   def show
+    @schedule=Schedule.find_by(id: params[:id])
   end
 
   def new

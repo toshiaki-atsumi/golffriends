@@ -8,7 +8,7 @@
        <tr>
          <th>会の名前</th>
          <th>管理者</th>
-         <th>メンバー数</th>
+         <th>会員数</th>
          <th>ゴルフ場</th>
        </tr>
      </thead>
@@ -16,7 +16,7 @@
          <tr>
            <td><%= @party.name %></td>
            <td><%= @member.name %></td>
-           <td><%= %></td>
+           <td><%= Request.where(party_id: party.id).count %></td>
            <td><%= %></td>
          </tr>
      </tbody>
