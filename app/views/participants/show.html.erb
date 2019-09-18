@@ -1,2 +1,21 @@
-<h1>Participants#show</h1>
-<p>Find me in app/views/participants/show.html.erb</p>
+<p1>出欠状況　<%= @schedule.date.strftime("%m/%d")+"("+%w(日 月 火 水 木 金 土)[@schedule.date.wday]+")"  %></p1>
+<table class="table table-striped border="1" ">
+    <thead>
+      <tr>
+        <% @schedule.mark.each do |mk| %>
+           <th><%= mk %> </th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+    <% (0..@p_count.max).each do |i| %>
+      <tr>
+   
+            <% @schedule.mark.each_index do |j | %>
+                <td><%= @p_name[j][i] %></td>
+            <% end %>
+          
+      </tr>
+    <% end %>  
+    </tbody>
+  </table>

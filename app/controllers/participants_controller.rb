@@ -10,6 +10,20 @@ class ParticipantsController < ApplicationController
   
   def show
     @schedule=Schedule.find_by(id: params[:id])
+    @p_name=[]
+    @p_count=[]
+    @schedule.mark.each_with_index  do |mark ,j|
+        @p_count[j]=0
+        ps = Participant.where(schedule_id: @schedule.id ,mark: mark)
+        @p_name[j]=[]
+       
+        if ps != nil 
+           ps.each do |p|
+             @p_name[j]<< Member.find_by(id: p.member_id).name
+             @p_count[j]=@p_name[j].count
+           end
+        end
+    end  
   end
 
   def new
