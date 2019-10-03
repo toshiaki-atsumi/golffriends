@@ -36,22 +36,19 @@ class MembersController < ApplicationController
   
   def update
     @member = Member.find(params[:id])
-    email = params[:member][:email].downcase
-    password = params[:member][:password]
-    if pwcheck(email,password)
    
       if @member.update(member_params)
         flash[:success] = '登録内容を変更しました。'
         redirect_to root_url
       else
          flash.now[:danger] = '登録変更に失敗しました。'
-          render :new
+         redirect_to root_url
       end
-    else
-      flash.now[:danger] = '認証に失敗しました。'
-      render :new  
-    end
+
   end  
+  
+  def organizer
+  end
   
   def destroy
     current_member.destroy

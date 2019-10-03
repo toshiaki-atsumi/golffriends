@@ -23,6 +23,7 @@
               <li class="dropdown-item"><%= link_to '会の一覧', parties_path(current_member) %></li>              
               <li class="dropdown-item"><%= link_to '申請状況', request_path(current_member) %></li>                
               <li class="dropdown-item"><%= link_to 'ﾌﾟﾛﾌｨｰﾙ', edit_member_path(current_member) %></li>
+              <li class="dropdown-item"><%= link_to '会の創設', new_party_path(current_member) %></li>               
               <li class="dropdown-divider"></li>
               <li class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete %></li>
               <li class="dropdown-item"><%= link_to '退会', current_member, method: :delete, data: { confirm: "本当に退会しますか?" }  %></li> 
@@ -37,12 +38,12 @@
                   <li class="dropdown-item"><%= link_to 'ｽｹｼﾞｭｰﾙ一覧', schedules_path(current_member) %></li>
                   <li class="dropdown-item"><%= link_to 'お知らせ', root_url(current_member) %></li> 
                   <li class="dropdown-divider"></li>
-                  <li class="dropdown-item"><%= link_to '会の創設', new_party_path(current_member) %></li>  
                   <li class="dropdown-item"><%= link_to '会の編集', party_path(current_member) %></li>   
                   <li class="dropdown-item"><%= link_to '入会審査', requests_path(current_member) %></li>
                   <li class="dropdown-item"><%= link_to '会員一覧', members_path(current_member) %></li>                   
                   <li class="dropdown-divider"></li>
-                  <li class="dropdown-item"><%= link_to '会の削除', root_url(current_member) %></li>
+                  <li class="dropdown-item"><%= link_to '管理者交替', organizer_path(current_member) %></li>      
+                  <li class="dropdown-item"><%= link_to '会の削除', $current_party, method: :delete, data: { confirm: "本当に会を削除しますか?" }  %></li> 
                 </ul>
               </li>
           <% else %> 

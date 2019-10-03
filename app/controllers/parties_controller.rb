@@ -1,6 +1,6 @@
 class PartiesController < ApplicationController
    before_action :require_member_logged_in
-   before_action :require_organaizer_logged_in, only: [:show, :update]
+   before_action :require_organaizer_logged_in, only: [:show, :update,:destroy]
    
   def index
     @parties = Party.order(id: :desc).page(params[:page]).per(10)
@@ -38,17 +38,35 @@ class PartiesController < ApplicationController
   
   
   def update
-    binding.pry
     @party = Party.find(params[:id])
     party_organizer?
       if @party.update(party_params)
         flash[:success] = '登録内容を変更しました。'
         redirect_to root_url
       else
-         flash.now[:danger] = '登録変更に失敗しました。'
-          render :update
+         flash[:danger] = '登録変更に失敗しました。'
+        redirect_to root_url
       end
   end  
+  
+  def destroy
+    @party = Party.find(params[:id])
+    party_organizer?
+    if @party.destroy
+      $current_party = nil
+      current_member.organizer = ""
+      current_member.save
+      flash[:success] = '会を削除しました。'
+      redirect_to root_url
+    else
+      flash[:danger] = '会の創設に失敗しました。'
+      redirect_to root_url
+    end
+    
+    
+  end
+  
+  
   
   include SessionsHelper
   include PartiesHelper

@@ -1,5 +1,5 @@
 class SchedulesController < ApplicationController
-  before_action :require_organaizer_logged_in
+  before_action :require_organaizer_logged_in, only: [:index, :create,:edit,:update,:destroy]
   before_action :require_party_selected
   
   def index
